@@ -1,0 +1,25 @@
+{
+  "name": "desafio-popes",
+  "version": "1.0.0",
+  "description": "REST API para o desafio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dodevs/desafio-popes.git"
+  },
+  "author": "Douglas Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dodevs/desafio-popes/issues"
+  },
+  "homepage": "https://github.com/dodevs/desafio-popes#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
