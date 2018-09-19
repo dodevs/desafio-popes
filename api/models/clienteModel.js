@@ -1,8 +1,8 @@
 'use stric';
 const mongoose = require('mongoose');
-const Schema - mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let ClienteSchema = new Schema({
+const ClienteSchema = new Schema({
   name: {
     type: String,
     required: 'Por favor, digite o nome'
@@ -12,8 +12,24 @@ let ClienteSchema = new Schema({
     required: "Por favor, digite o endereço"
   },
   contatos: {
-    type: [ContatoSchema]
+    type: [ { type: Schema.Types.ObjectId, ref: 'Contato' }]
   }
 });
 
-module.exports = mongoose.model('Cliente', ClienteSchema)
+const ContatoSchema = new Schema({
+  nome:{
+    type: String,
+    required: "Por favor, digite o nome do contato"
+  },
+  email: {
+    type: String
+  },
+  telefones: {
+    type: [String]
+  }
+});
+
+Cliente = mongoose.model('Cliente', ClienteSchema);
+Contato = mongoose.model('Contato', ContatoSchema);
+
+module.exports = {Cliente, Contato};
