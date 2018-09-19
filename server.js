@@ -1,7 +1,8 @@
-const app = require('express')();
-const port = 5000;
+const app = require('express')(), port = 5000;
+
 const mongoose = require('mongoose');
-const Ciente = require('./api/models/clienteModel');
+require('./api/models/clienteModel');
+
 const bodyParser = require('body-parser');
 
 // conexao mongoose
