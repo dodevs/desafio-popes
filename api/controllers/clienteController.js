@@ -7,7 +7,7 @@ const Cliente = mongoose.model('Cliente');
 
 exports.clienteList = function(req, res) {
   Cliente.find({}, function(err, cliente) {
-    if(err)
+    if (err)
       res.send(err);
     res.json(cliente);
   });
@@ -23,7 +23,7 @@ exports.clienteCreate = function(req, res) {
 };
 
 exports.clienteGet = function(req, res) {
-  Cliente.findById(req.params.clienteId, function(err,cliente) {
+  Cliente.findOne( {'nome': req.params.clienteName}, function(err,cliente) {
     if(err)
       res.send(err);
     res.json(cliente);

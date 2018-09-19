@@ -2,34 +2,34 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const ContatoSchema = new Schema({
+    clienteId: {type: Schema.Types.ObjectId, ref: 'Cliente'},
+    nome:{
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    telefones: {
+        type: [String],
+        required: true
+    }
+});
+
+
 const ClienteSchema = new Schema({
-  name: {
+  nome: {
     type: String,
-    required: 'Por favor, digite o nome'
+    required: true
   },
   endereco: {
     type: String,
-    required: "Por favor, digite o endereço"
+    required: true
   },
-  contatos: {
-    type: [ { type: Schema.Types.ObjectId, ref: 'Contato' }]
-  }
+  contatos: [ ContatoSchema ]
 });
 
-const ContatoSchema = new Schema({
-  nome:{
-    type: String,
-    required: "Por favor, digite o nome do contato"
-  },
-  email: {
-    type: String
-  },
-  telefones: {
-    type: [String]
-  }
-});
-
-Cliente = mongoose.model('Cliente', ClienteSchema);
-Contato = mongoose.model('Contato', ContatoSchema);
-
-module.exports = {Cliente, Contato};
+mongoose.model('Contato', ContatoSchema);
+module.exports = mongoose.model('Cliente', ClienteSchema);

@@ -7,7 +7,7 @@ module.exports = function(app) {
     .get(clienteController.clienteList)
     .post(clienteController.clienteCreate);
 
-  app.route('/:clienteId')
+  app.route('/:clienteName')
     .get(clienteController.clienteGet)
     .put(clienteController.clienteUpdate)
     .delete(clienteController.clienteDelete);

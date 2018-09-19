@@ -1,2 +1,5 @@
 #NIX ENVIRONMENT
 default.nix
+
+#NODE
+node_modules
