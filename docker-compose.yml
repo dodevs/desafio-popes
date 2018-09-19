@@ -34,7 +34,7 @@ services:
       - /usr/app/node_modules
     restart: always
     ports:
-      - "4200:8000"
+      - "4200:4200"
     depends_on:
       - server
     environment:
