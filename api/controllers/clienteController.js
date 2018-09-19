@@ -31,7 +31,7 @@ exports.clienteGet = function(req, res) {
 };
 
 exports.clienteUpdate = function(req, res) {
-  Cliente.findOneAndUpdate({_id: req.params.clienteId}, req.body, {new: true}, function(err, cliente){
+  Cliente.findOneAndUpdate({'nome': req.params.clienteName}, req.body, {new: true}, function(err, cliente){
     if(err)
       res.send(err);
     res.json(cliente);
@@ -39,7 +39,7 @@ exports.clienteUpdate = function(req, res) {
 };
 
 exports.clienteDelete = function(req, res) {
-  Cliente.remove({_id: req.params.clienteId}, function(err, cliente){
+  Cliente.remove({'nome': req.params.clienteName}, function(err, cliente){
     if(err)
       res.send(err);
     res.json({ message: "Cliente deletado com sucesso"});
