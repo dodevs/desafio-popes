@@ -1,19 +1,21 @@
 version: '2'
 services:
+
   mongo:
     container_name: mongo
     restart: always
     image: mongo
     volumes:
-      - ./data:/data/db
+      - ./mongo_data:/data/db
     ports:
       - "27017:27017"
-  app:
-    container_name: app
-    build: .
+
+  server:
+    container_name: server
+    build: express_server
     command: npm run devstart
     volumes:
-      - .:/usr/app
+      - ./express_server:/usr/app
       - /usr/app/node_modules
     restart: always
     ports:
@@ -22,3 +24,18 @@ services:
       - mongo
     environment:
       MONGODB_URL: mongodb://mongo:27017/desafio
+
+  app:
+    container_name: app
+    build: desafio_app
+    command: npm start
+    volumes:
+      - ./desafio_app:/usr/app
+      - /usr/app/node_modules
+    restart: always
+    ports:
+      - "4200:8000"
+    depends_on:
+      - server
+    environment:
+      API_URL: http://server:5000
