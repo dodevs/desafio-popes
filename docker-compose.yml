@@ -1,12 +1,15 @@
-version: '2'
-services:
+version: '3'
 
+volumes:
+  mongo-data: {}
+
+services:
   mongo:
     container_name: mongo
-    restart: always
+    #restart: always
     image: mongo
     volumes:
-      - ./mongo_data:/data/db
+      - mongo-data:/data/db
     ports:
       - "27017:27017"
 
@@ -17,7 +20,7 @@ services:
     volumes:
       - ./express_server:/usr/app
       - /usr/app/node_modules
-    restart: always
+    #restart: always
     ports:
       - "5000:5000"
     depends_on:
@@ -25,17 +28,17 @@ services:
     environment:
       MONGODB_URL: mongodb://mongo:27017/desafio
 
-  app:
-    container_name: app
-    build: desafio_app
-    command: npm start
-    volumes:
-      - ./desafio_app:/usr/app
-      - /usr/app/node_modules
-    restart: always
-    ports:
-      - "4200:4200"
-    depends_on:
-      - server
-    environment:
-      API_URL: http://server:5000
+  #app:
+    #container_name: app
+    #build: desafio_app
+    #command: npm start
+    #volumes:
+      #- ./desafio_app:/usr/app
+      #- /usr/app/node_modules
+    #restart: always
+    #ports:
+      #- "4200:4200"
+    #depends_on:
+      #- server
+    #environment:
+      #API_URL: http://server:5000
